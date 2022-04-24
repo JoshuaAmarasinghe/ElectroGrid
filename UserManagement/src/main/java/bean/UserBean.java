@@ -118,6 +118,12 @@ public class UserBean {
         setNIC(UserObj.get("NIC").getAsString());
         setEmail(UserObj.get("email").getAsString());
         setPhone(UserObj.get("phone").getAsString());
+	}
+
+	public void convertStringToJSONlogin (String userData) {
+		//convert string to JSON object and assign to variables in the class
+        JsonObject UserObj  = new JsonParser().parse(userData).getAsJsonObject();
+        setEmail(UserObj.get("email").getAsString());
         setPassword(UserObj.get("password").getAsString());
 	}
 }
