@@ -16,7 +16,7 @@ public class UserService {
 
 	//Fetch All
 	@GET
-	@Path("/")
+	@Path("/customers")
 	@Produces(MediaType.TEXT_HTML)
 	public String readUserDetails(){
 		return UserObj.readUserDetails();
