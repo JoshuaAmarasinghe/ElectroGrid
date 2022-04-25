@@ -4,5 +4,7 @@ monitor the power consumption of the users, generate the monthly bills and autom
 users, and accept the online payments from the users
 
 # Contributors
-  #### [@Joshua Amarasinghe](https://github.com/JoshuaAmarasinghe)
-  #### [@Aminda Bandara](https://github.com/amindabandara)
+  #### [@Amarasinghe J. V. A.](https://github.com/JoshuaAmarasinghe)
+  #### [@H. R. A. C. Bandara ](https://github.com/amindabandara)
+  #### [@Sundar Shrestha]
+  #### [@Weerasinghe H. P. O. R]
