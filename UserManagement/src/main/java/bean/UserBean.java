@@ -21,7 +21,6 @@ public class UserBean {
 	public UserBean() {
 		super();
 	}
-
 	
 	public Integer getUserId() {
 		return userId;
