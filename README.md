@@ -6,5 +6,5 @@ users, and accept the online payments from the users
 # Contributors
   #### [@Amarasinghe J. V. A.](https://github.com/JoshuaAmarasinghe)
   #### [@H. R. A. C. Bandara ](https://github.com/amindabandara)
-  #### [@Sundar Shrestha]
-  #### [@Weerasinghe H. P. O. R]
+  #### [@Sundar Shrestha](https://github.com/sundar112)
+  #### [@Weerasinghe H. P. O. R](https://github.com/IT20073978)
