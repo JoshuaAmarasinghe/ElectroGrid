@@ -8,6 +8,7 @@ import java.sql.Statement;
 
 import bean.UserBean;
 import util.DBConnection;
+import util.RegistrationValidation;
 
 public class User {
 
@@ -24,14 +25,19 @@ public class User {
 
 		try {
 			Connection con = DBConnection.connect();
+			RegistrationValidation validations = new RegistrationValidation();
 			
 			if (con == null) {
-				return "Error while connecting to the database for inserting.";
+				return "Error while connecting to the database for reading.";
+			}
+			
+			//Validating data
+			if(validations.registrationValidation(userBean.getAccountNo(),userBean.getName(), userBean.getAddress(), userBean.getNIC(), userBean.getEmail(), userBean.getPhone(), userBean.getPassword()) == false){
+				return "Please check the input values";
 			}
 
 			// create a prepared statement
 			String query = "insert into user(`accountNo`,`name`,`address`,`NIC`,`email`,`phone`,`password`,`user_role`)"+ " values (?, ?, ?, ?, ?, ?, ?, ?)";
-			
 			PreparedStatement preparedStmt = con.prepareStatement(query);
 
 			//binding values
@@ -44,12 +50,10 @@ public class User {
 			preparedStmt.setString(7, userBean.getPassword()); 
 			preparedStmt.setString(8, "Customer");
 			
-			//Insert Validation
-			
 			// execute the statement
 			preparedStmt.execute();
 			con.close();
-			output = "Inserted successfully";
+			output = "User inserted successfully";
 
 		} catch (SQLException e) {
 			output = "Error while inserting the user.";
@@ -74,9 +78,8 @@ public class User {
 					+"<th>Name</th><th>Address</th><th>NIC</th>"
 					+ "<th>Email</th>"
 					+ "<th>Phone</th>"
-					+ "<th>Password</th>"
 					+ "<th>User Role</th>";
-			String query = "select * from user";
+			String query = "select * from user WHERE user_role='Customer'";
 			Statement stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery(query);
 
@@ -88,7 +91,6 @@ public class User {
 				String NIC = rs.getString("NIC");
 				String email = rs.getString("email");
 				String phone = rs.getString("phone");
-				String password = rs.getString("password");
 				String user_role = rs.getString("user_role");
 
 				// Add a row into the html table
@@ -98,7 +100,6 @@ public class User {
 				output += "<td>" + NIC + "</td>";
 				output += "<td>" + email + "</td>"; 
 				output += "<td>" + phone + "</td>";
-				output += "<td>" + password + "</td>";
 				output += "<td>" + user_role + "</td>";
 			}
 
@@ -316,7 +317,7 @@ public class User {
 			ResultSet results = preparedStmt.executeQuery();
 			
 			if (!results.isBeforeFirst() ) {        
-			    output = "Invalid User Credentials !!!!";
+			    output = "Invalid User Credentials!";
 			}
 
 			// iterate through the rows in the result set
