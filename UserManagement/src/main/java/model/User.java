@@ -8,7 +8,7 @@ import java.sql.Statement;
 
 import bean.UserBean;
 import util.DBConnection;
-import util.RegistrationValidation;
+import util.UserValidation;
 
 public class User {
 
@@ -25,12 +25,12 @@ public class User {
 
 		try {
 			Connection con = DBConnection.connect();
-			RegistrationValidation validations = new RegistrationValidation();
+			UserValidation validations = new UserValidation();
 			
 			if (con == null) {
 				return "Error while connecting to the database for reading.";
 			}
-			
+
 			//Validating data
 			if(validations.registrationValidation(userBean.getAccountNo(),userBean.getName(), userBean.getAddress(), userBean.getNIC(), userBean.getEmail(), userBean.getPhone(), userBean.getPassword()) == false){
 				return "Please check the input values";
@@ -182,6 +182,8 @@ public class User {
 
 	    try{
 			Connection con = DBConnection.connect();
+			UserValidation validations = new UserValidation();
+			
 		   if (con == null){
 			   return "Error while connecting to the database for updating"; 
 		   }
@@ -189,6 +191,12 @@ public class User {
 		   String query = "UPDATE user SET accountNo=?,name=?,address=?,NIC=?,email=?,phone=? WHERE userId=? and user_role='Customer'";
 		   PreparedStatement preparedStmt = con.prepareStatement(query);
 		   
+		   
+		   //Validating data
+			if(validations.userUpdateValidation(userBean.getAccountNo(),userBean.getName(), userBean.getAddress(), userBean.getNIC(), userBean.getEmail(), userBean.getPhone()) == false){
+				return "Please check the input values";
+			}
+			
 		   // binding values
 		   	preparedStmt.setString(1, userBean.getAccountNo());
 			preparedStmt.setString(2, userBean.getName());
