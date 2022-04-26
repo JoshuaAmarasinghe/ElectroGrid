@@ -41,17 +41,17 @@ public class Mynewbill {
 				 
 				 // create a prepared statement
 				 
-				 String query = " insert into bill (`billid`,`consumerid`,`expiredate`,`issuingdate`,`unitnumber`,`billamount`)" + " values (?, ?, ?, ?, ?)";
+				 String query = " insert into bill (`billid`,`consumerid`,`expiredate`,`issuingdate`,`unitnumber`,`billamount`)" + " values (?, ?, ?, ?, ?, ?)";
 				 PreparedStatement preparedStmt = con.prepareStatement(query);
 				 
 				 // binding values
 				 
 				 preparedStmt.setString(1, billid);
-				 preparedStmt.setString(3, consumerid);
-				 preparedStmt.setString(4, expiredate);
-				 preparedStmt.setString(5, issuingdate);
-				 preparedStmt.setString(6, unitnumber);
-				 preparedStmt.setString(7, billamount);
+				 preparedStmt.setString(2, consumerid);
+				 preparedStmt.setString(3, expiredate);
+				 preparedStmt.setString(4, issuingdate);
+				 preparedStmt.setString(5, unitnumber);
+				 preparedStmt.setString(6, billamount);
 				
 				 
 				 // execute the statement
